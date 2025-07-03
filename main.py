@@ -26,7 +26,10 @@ def main():
         f.write("## The source file is:\n")
         f.write(f"URL: {url}\n\n")
         f.write("## Data fetched from the URL:\n\n")
-        f.write(data)
+
+        f.write(data.__str__())
+
+        f.write("\n\n## Top 5 Water Purifiers:\n")
         f.write("\n\n")
         for i, product in enumerate(data[:5], start=1):
             f.write(f"{i}. **Name:** {product['name']}\n")

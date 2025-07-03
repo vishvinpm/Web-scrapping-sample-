@@ -1,5 +1,6 @@
 import pandas as pd
 from water_purifier.scraper import DataScraper
+from water_purifier.content_processor import WebContentProcessor
 # from water_purifier.gpt_processing import GPTProcessing
 
 def main():
@@ -12,11 +13,13 @@ def main():
     df = pd.read_csv("urls_file.csv")
 
     url = df.iloc[0][1]  #first url
+    
 
-    # Create instance of DataScraper and get data
-    scraper = DataScraper(url)
-    data = scraper.get_data()
+    #creating instance of WebContentProcessor
+    content_processor = WebContentProcessor(url)
+    data = content_processor.extract_content()
 
+    # Print the first 5 products
     print("Top 5 Water Purifiers:\n")
     for i, product in enumerate(data[:5], start=1):
         print(f"{i}. {product['name']} | {product['price']} | {product['amazon link']}")
